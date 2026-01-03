@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #C5A059;
+  --primary-hover: #AB8A4B;
+  --secondary: #1A1A1A;
+  --accent: #F9F7F2;
+  --background-light: #FFFFFF;
+  --background-dark: #121212;
+  --text-dark: #1A1A1A;
+  --text-light: #E5E5E5;
+  --text-muted: #717171;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", serif;
+  letter-spacing: -0.02em;
+}
+
+.luxury-gradient {
+  background: linear-gradient(135deg, #1A1A1A 0%, #333333 100%);
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #C5A059 0%, #AB8A4B 100%);
+}
+
+.text-gold {
+  color: var(--primary);
+}
+
+.bg-cream {
+  background-color: var(--accent);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C5A059;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #AB8A4B;
+}
+
+/* Transitions */
+.transition-luxury {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}

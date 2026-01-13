@@ -2,11 +2,15 @@
 
 :root {
   --primary: #C5A059;
+  /* Gold */
   --primary-hover: #AB8A4B;
-  --secondary: #1A1A1A;
+  --secondary: #001F3F;
+  /* Navy Blue */
+  --secondary-light: #003366;
   --accent: #F9F7F2;
+  /* Cream/Off-white */
   --background-light: #FFFFFF;
-  --background-dark: #121212;
+  --background-dark: #001F3F;
   --text-dark: #1A1A1A;
   --text-light: #E5E5E5;
   --text-muted: #717171;

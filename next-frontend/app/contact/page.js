@@ -1,8 +1,10 @@
+'use client'
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
-const Contact = () => {
+const ContactPage = () => {
     return (
         <div className="pt-24 pb-24 bg-white font-light">
             {/* Immersive Header */}
@@ -13,11 +15,12 @@ const Contact = () => {
                     transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
                     className="absolute inset-0"
                 >
-                    <img
+                    <Image
                         src="https://images.unsplash.com/photo-1449156001437-3a1f9d977ae2?auto=format&fit=crop&q=80"
                         alt="Contact Coastal"
-                        className="w-full h-full object-cover"
-                        loading="lazy"
+                        fill
+                        className="object-cover"
+                        priority
                     />
                 </motion.div>
                 <div className="relative z-10 text-center">
@@ -104,28 +107,28 @@ const Contact = () => {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
                                         <div className="space-y-2 group">
                                             <label className="block text-[9px] font-bold text-gray-400 uppercase tracking-[0.4em]">First Name</label>
-                                            <input type="text" className="w-full bg-transparent border-b border-black/10 py-4 focus:outline-none focus:border-primary transition-smooth text-sm font-light" placeholder="Alexander" />
+                                            <input type="text" className="w-full bg-transparent border-b border-black/10 py-4 focus:outline-none focus:border-primary transition-all text-sm font-light" placeholder="Alexander" />
                                         </div>
                                         <div className="space-y-2 group">
                                             <label className="block text-[9px] font-bold text-gray-400 uppercase tracking-[0.4em]">Last Name</label>
-                                            <input type="text" className="w-full bg-transparent border-b border-black/10 py-4 focus:outline-none focus:border-primary transition-smooth text-sm font-light" placeholder="Sterling" />
+                                            <input type="text" className="w-full bg-transparent border-b border-black/10 py-4 focus:outline-none focus:border-primary transition-all text-sm font-light" placeholder="Sterling" />
                                         </div>
                                     </div>
                                     <div className="space-y-2">
                                         <label className="block text-[9px] font-bold text-gray-400 uppercase tracking-[0.4em]">Electronic Mail</label>
-                                        <input type="email" className="w-full bg-transparent border-b border-black/10 py-4 focus:outline-none focus:border-primary transition-smooth text-sm font-light" placeholder="alexander@sterling.com" />
+                                        <input type="email" className="w-full bg-transparent border-b border-black/10 py-4 focus:outline-none focus:border-primary transition-all text-sm font-light" placeholder="alexander@sterling.com" />
                                     </div>
                                     <div className="space-y-2">
                                         <label className="block text-[9px] font-bold text-gray-400 uppercase tracking-[0.4em]">Inquiry Detail</label>
-                                        <textarea rows="4" className="w-full bg-transparent border-b border-black/10 py-4 focus:outline-none focus:border-primary transition-smooth text-sm font-light resize-none" placeholder="How may we assist you?"></textarea>
+                                        <textarea rows="4" className="w-full bg-transparent border-b border-black/10 py-4 focus:outline-none focus:border-primary transition-all text-sm font-light resize-none" placeholder="How may we assist you?"></textarea>
                                     </div>
 
                                     <button
                                         type="submit"
                                         onClick={(e) => { e.preventDefault(); alert('Your inquiry has been sent to our concierge.'); }}
-                                        className="btn-luxury w-full group overflow-hidden"
+                                        className="bg-secondary text-white py-5 px-8 text-[10px] font-bold uppercase tracking-[0.3em] w-full text-center hover:bg-primary transition-all"
                                     >
-                                        <span className="relative z-10">Submit Inquiry</span>
+                                        Submit Inquiry
                                     </button>
                                 </form>
                             </div>
@@ -149,4 +152,4 @@ const Contact = () => {
     );
 };
 
-export default Contact;
+export default ContactPage;

@@ -10,9 +10,11 @@ import FAQs from './pages/FAQs';
 import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import ManageBooking from './pages/ManageBooking';
+import RoomDetail from './pages/RoomDetail';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminBookings from './pages/AdminBookings';
 import AdminRooms from './pages/AdminRooms';
+import About from './pages/About';
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
       <Routes>
         {/* Guest Routes */}
         <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+        <Route path="/about" element={<MainLayout><About /></MainLayout>} />
         <Route path="/rooms" element={<MainLayout><Rooms /></MainLayout>} />
+        <Route path="/rooms/:id" element={<MainLayout><RoomDetail /></MainLayout>} />
         <Route path="/gallery" element={<MainLayout><Gallery /></MainLayout>} />
         <Route path="/faqs" element={<MainLayout><FAQs /></MainLayout>} />
         <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />

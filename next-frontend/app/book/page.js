@@ -1,9 +1,11 @@
+'use client'
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Users, Home, CreditCard, Check, ArrowRight, ArrowLeft } from 'lucide-react';
-import toast from 'react-hot-toast';
+import { Check, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-const Booking = () => {
+const BookingPage = () => {
     const [step, setStep] = useState(1);
 
     const nextStep = () => setStep(prev => prev + 1);
@@ -69,9 +71,9 @@ const Booking = () => {
                                                 <input type="date" className="w-full bg-transparent focus:outline-none text-secondary py-2" />
                                             </div>
                                         </div>
-                                        <button onClick={nextStep} className="btn-luxury group flex items-center justify-center gap-4">
+                                        <button onClick={nextStep} className="bg-secondary text-white py-5 px-10 text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-primary transition-all group flex items-center justify-center gap-4">
                                             <span>Continue Selection</span>
-                                            <ArrowRight size={14} className="group-hover:translate-x-2 transition-smooth" />
+                                            <ArrowRight size={14} className="group-hover:translate-x-2 transition-all" />
                                         </button>
                                     </motion.div>
                                 )}
@@ -98,9 +100,9 @@ const Booking = () => {
                                         </div>
                                         <div className="flex gap-8">
                                             <button onClick={prevStep} className="text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 hover:text-secondary py-5 px-10 border border-black/5">Back</button>
-                                            <button onClick={nextStep} className="btn-luxury flex-1 group flex items-center justify-center gap-4">
+                                            <button onClick={nextStep} className="bg-secondary text-white py-5 px-10 text-[10px] font-bold uppercase tracking-[0.3em] flex-1 hover:bg-primary transition-all group flex items-center justify-center gap-4">
                                                 <span>Finalize Inquiry</span>
-                                                <ArrowRight size={14} className="group-hover:translate-x-2 transition-smooth" />
+                                                <ArrowRight size={14} className="group-hover:translate-x-2 transition-all" />
                                             </button>
                                         </div>
                                     </motion.div>
@@ -120,7 +122,7 @@ const Booking = () => {
                                         <p className="text-gray-500 max-w-sm mx-auto font-light leading-relaxed">
                                             Our concierge is currently reviewing your selection. A bespoke confirmation will be dispatched to your mailbox shortly.
                                         </p>
-                                        <Link to="/" className="inline-block text-[10px] uppercase tracking-[0.4em] font-bold text-primary hover:text-secondary pt-8 underline-offset-8 underline">
+                                        <Link href="/" className="inline-block text-[10px] uppercase tracking-[0.4em] font-bold text-primary hover:text-secondary pt-8 underline-offset-8 underline">
                                             Return to Frontage
                                         </Link>
                                     </motion.div>
@@ -160,4 +162,4 @@ const Booking = () => {
     );
 };
 
-export default Booking;
+export default BookingPage;

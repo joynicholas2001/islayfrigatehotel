@@ -1,7 +1,10 @@
+'use client'
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const RoomCard = ({ room }) => {
     // Safely parse JSON strings if needed
@@ -17,10 +20,12 @@ const RoomCard = ({ room }) => {
         >
             {/* Image Section */}
             <div className="relative h-[28rem] overflow-hidden luxury-shadow bg-secondary">
-                <img
+                <Image
                     src={images[0] || 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80'}
                     alt={room.name}
-                    className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-2000 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-700"></div>
 
@@ -50,14 +55,14 @@ const RoomCard = ({ room }) => {
 
                 <div className="flex items-center justify-between border-t border-black/5 pt-8 mt-4 overflow-hidden">
                     <Link
-                        to={`/rooms/${room.id}`}
+                        href={`/rooms/${room.id}`}
                         className="text-[10px] font-bold uppercase tracking-[0.4em] text-secondary hover:text-primary transition-all flex items-center gap-3 group/link"
                     >
                         Reveal Details <ArrowRight size={14} className="group-hover/link:translate-x-2 transition-transform duration-500" />
                     </Link>
 
                     <Link
-                        to="/book"
+                        href="/book"
                         className="opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 text-[10px] font-bold uppercase tracking-[0.4em] text-primary"
                     >
                         Reserve Now

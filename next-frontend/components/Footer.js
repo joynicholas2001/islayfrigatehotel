@@ -1,11 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+'use client'
+
+import React from 'react'
+import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
 const Footer = () => {
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
 
     return (
         <footer className="bg-[#050505] text-white pt-40 pb-20 relative overflow-hidden font-light">
@@ -18,8 +20,8 @@ const Footer = () => {
                     {/* Brand Main */}
                     <div className="lg:col-span-5 space-y-16">
                         <div>
-                            <Link to="/" className="text-4xl md:text-5xl font-serif font-bold tracking-tighter block mb-8">
-                                ISLAY <span className="text-primary italic font-medium -ml-1">FRIGATE</span>
+                            <Link href="/" className="text-4xl md:text-5xl font-serif font-bold tracking-tighter block mb-8">
+                                ISLAY <span className="text-[#C5A059] italic font-medium -ml-1">FRIGATE</span>
                             </Link>
                             <p className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-md italic font-serif">
                                 "Where the legacy of the West Coast meets the grace of modern repose."
@@ -27,7 +29,7 @@ const Footer = () => {
                         </div>
 
                         <div className="flex flex-col space-y-4">
-                            <span className="text-[10px] uppercase tracking-[0.5em] text-primary font-bold">Harbour Front Sanctuary</span>
+                            <span className="text-[10px] uppercase tracking-[0.5em] text-[#C5A059] font-bold">Harbour Front Sanctuary</span>
                             <p className="text-gray-400 text-sm">Harbour Street, Tarbert, Argyll & Bute, Scotland</p>
                         </div>
                     </div>
@@ -45,7 +47,7 @@ const Footer = () => {
                                     { n: 'Inquiry', p: '/contact' }
                                 ].map((item) => (
                                     <li key={item.n}>
-                                        <Link to={item.p} className="text-sm text-gray-400 hover:text-white transition-smooth flex items-center group">
+                                        <Link href={item.p} className="text-sm text-gray-400 hover:text-white transition-all duration-500 flex items-center group">
                                             {item.n}
                                             <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-500 ml-2" />
                                         </Link>
@@ -66,12 +68,6 @@ const Footer = () => {
                                     <p className="text-sm text-white font-medium">islayfrigatehotel@outlook.com</p>
                                     <p className="text-[10px] uppercase tracking-widest text-gray-600 mt-1">Correspondence</p>
                                 </li>
-                                <li>
-                                    <Link to="/contact" className="text-sm text-gray-400 hover:text-white transition-smooth flex items-center group pt-4">
-                                        Location Map
-                                        <ArrowUpRight size={14} className="ml-2" />
-                                    </Link>
-                                </li>
                             </ul>
                         </div>
 
@@ -81,7 +77,7 @@ const Footer = () => {
                             <ul className="space-y-6">
                                 {['Instagram', 'Facebook', 'LinkedIn'].map((item) => (
                                     <li key={item}>
-                                        <a href="#" className="text-sm text-gray-400 hover:text-white transition-smooth flex items-center group">
+                                        <a href="#" className="text-sm text-gray-400 hover:text-white transition-all duration-500 flex items-center group">
                                             {item}
                                             <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-500 ml-2" />
                                         </a>
@@ -90,24 +86,6 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                </div>
-
-                {/* Newsletter Immersive */}
-                <div className="mt-40 mb-40 max-w-2xl">
-                    <h4 className="text-[10px] uppercase tracking-[0.6em] font-bold text-primary mb-12">The Journal</h4>
-                    <p className="text-3xl font-serif italic text-white mb-12 leading-tight">
-                        Subscribe to receive whispers of coastal serenity and seasonal invitations.
-                    </p>
-                    <form className="relative group">
-                        <input
-                            type="email"
-                            placeholder="Your email address"
-                            className="w-full bg-transparent border-b border-white/10 py-6 text-xl focus:outline-none focus:border-primary transition-smooth pr-20"
-                        />
-                        <button className="absolute right-0 bottom-6 text-xs uppercase tracking-[0.4em] font-bold text-primary hover:text-white transition-smooth">
-                            Join
-                        </button>
-                    </form>
                 </div>
 
                 {/* Bottom Bar */}
@@ -125,9 +103,9 @@ const Footer = () => {
                         onClick={scrollToTop}
                         className="group flex flex-col items-center gap-4"
                     >
-                        <span className="text-[9px] uppercase tracking-[1em] text-gray-500 mr-[-1em] group-hover:text-primary transition-smooth">Back to Top</span>
+                        <span className="text-[9px] uppercase tracking-[1em] text-gray-500 mr-[-1em] group-hover:text-[#C5A059] transition-all duration-500">Back to Top</span>
                         <div className="w-px h-16 bg-white/10 relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-full bg-primary -translate-y-full group-hover:translate-y-0 transition-transform duration-700"></div>
+                            <div className="absolute top-0 left-0 w-full h-full bg-[#C5A059] -translate-y-full group-hover:translate-y-0 transition-transform duration-700"></div>
                         </div>
                     </button>
                 </div>
@@ -138,7 +116,7 @@ const Footer = () => {
                 Frigate
             </div>
         </footer>
-    );
-};
+    )
+}
 
-export default Footer;
+export default Footer

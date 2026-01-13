@@ -1,8 +1,11 @@
+'use client'
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import Image from 'next/image';
 
-const Gallery = () => {
+const GalleryPage = () => {
     const categories = ['Hotel', 'Rooms', 'Dining', 'Islay Coast'];
     const [activeCategory, setActiveCategory] = useState('All');
     const [selectedImage, setSelectedImage] = useState(null);
@@ -46,10 +49,12 @@ const Gallery = () => {
                     transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
                     className="absolute inset-0"
                 >
-                    <img
+                    <Image
                         src="https://images.unsplash.com/photo-1506466010722-395aa2bef877?auto=format&fit=crop&w=2000&q=80"
                         alt="Gallery Header"
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        priority
                     />
                 </motion.div>
                 <div className="relative z-10 text-center">
@@ -108,10 +113,11 @@ const Gallery = () => {
                                 className="relative aspect-[4/5] group overflow-hidden cursor-pointer luxury-shadow"
                                 onClick={() => setSelectedImage(img)}
                             >
-                                <img
+                                <Image
                                     src={img.url}
                                     alt={img.cat}
-                                    className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-2000 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col items-center justify-center p-8 text-center">
                                     <div className="p-6 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white group-hover:scale-110 transition-transform duration-700">
@@ -147,7 +153,7 @@ const Gallery = () => {
 
                         <button
                             className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors z-[110] p-4 group"
-                            onClick={handlePrev}
+                            onClick={handleNext}
                         >
                             <ChevronLeft size={48} strokeWidth={1} className="group-hover:-translate-x-2 transition-transform duration-500" />
                         </button>
@@ -168,10 +174,11 @@ const Gallery = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="relative w-full h-[65vh] md:h-[75vh] overflow-hidden">
-                                <img
+                                <Image
                                     src={selectedImage.url}
                                     alt={selectedImage.cat}
-                                    className="w-full h-full object-contain"
+                                    fill
+                                    className="object-contain"
                                 />
                             </div>
                             <div className="mt-12 text-center text-white max-w-lg space-y-6">
@@ -187,4 +194,4 @@ const Gallery = () => {
     );
 };
 
-export default Gallery;
+export default GalleryPage;

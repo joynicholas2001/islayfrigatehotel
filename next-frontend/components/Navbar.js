@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+'use client'
+
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Menu, X, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const location = useLocation();
+    const [isOpen, setIsOpen] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
+    const pathname = usePathname()
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+            setIsScrolled(window.scrollY > 50)
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     const navLinks = [
         { name: 'Home', path: '/' },
@@ -22,26 +25,26 @@ const Navbar = () => {
         { name: 'Rooms', path: '/rooms' },
         { name: 'Gallery', path: '/gallery' },
         { name: 'Contact', path: '/contact' },
-    ];
+    ]
 
-    const isAdminPage = location.pathname.startsWith('/admin');
-    const isHomePage = location.pathname === '/';
-    const showSolidNav = isScrolled || isAdminPage || isOpen || !isHomePage;
+    const isHomePage = pathname === '/'
+    const showSolidNav = isScrolled || isOpen || !isHomePage
 
     return (
         <nav
-            className={`fixed w-full z-50 transition-smooth ${showSolidNav ? 'bg-white/80 backdrop-blur-xl border-b border-black/5 py-4 shadow-sm' : 'bg-transparent py-8'
+            className={`fixed w-full z-50 transition-all duration-700 ${showSolidNav ? 'bg-white/80 backdrop-blur-xl border-b border-black/5 py-4 shadow-sm' : 'bg-transparent py-8'
                 }`}
         >
             <div className="max-w-[1400px] mx-auto px-6 sm:px-10">
                 <div className="flex justify-between items-center">
-                    <Link to="/" className="flex items-center group overflow-hidden">
+                    <Link href="/" className="flex items-center group overflow-hidden">
                         <motion.span
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
-                            className={`text-2xl font-serif font-bold tracking-tighter transition-all duration-700 ${showSolidNav ? 'text-secondary' : 'text-white'
-                                }`}>
-                            ISLAY <span className="text-primary italic font-medium -ml-1">FRIGATE</span>
+                            className={`text-2xl font-serif font-bold tracking-tighter transition-all duration-700 ${showSolidNav ? 'text-[#001F3F]' : 'text-white'
+                                }`}
+                        >
+                            ISLAY <span className="text-[#C5A059] italic font-medium -ml-1">FRIGATE</span>
                         </motion.span>
                     </Link>
 
@@ -50,21 +53,24 @@ const Navbar = () => {
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
-                                to={link.path}
-                                className={`text-[10px] font-bold uppercase tracking-[0.4em] hover:text-primary transition-all duration-500 relative group overflow-hidden ${showSolidNav ? 'text-secondary' : 'text-white'
+                                href={link.path}
+                                className={`text-[10px] font-bold uppercase tracking-[0.4em] hover:text-[#C5A059] transition-all duration-500 relative group overflow-hidden ${showSolidNav ? 'text-[#001F3F]' : 'text-white'
                                     }`}
                             >
                                 <span className="relative z-10">{link.name}</span>
-                                <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-primary origin-left transition-transform duration-500 scale-x-0 group-hover:scale-x-100 ${location.pathname === link.path ? 'scale-x-100' : ''
+                                <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-[#C5A059] origin-left transition-transform duration-500 scale-x-0 group-hover:scale-x-100 ${pathname === link.path ? 'scale-x-100' : ''
                                     }`}></span>
                             </Link>
                         ))}
 
-                        <div className="h-4 w-px bg-current opacity-10"></div>
+                        <div className={`h-4 w-px bg-current opacity-10 ${showSolidNav ? 'text-[#001F3F]' : 'text-white'}`}></div>
 
                         <Link
-                            to="/book"
-                            className="btn-luxury px-8 py-3 py-3 shadow-none border border-primary/20 hover:shadow-xl"
+                            href="/book"
+                            className={`px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-500 ${showSolidNav
+                                    ? 'bg-[#001F3F] text-white hover:bg-[#C5A059]'
+                                    : 'bg-white text-[#001F3F] hover:bg-[#C5A059] hover:text-white shadow-xl'
+                                }`}
                         >
                             Book Now
                         </Link>
@@ -73,7 +79,7 @@ const Navbar = () => {
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className={`p-2 transition-colors duration-300 ${showSolidNav ? 'text-secondary' : 'text-white'
+                            className={`p-2 transition-colors duration-300 ${showSolidNav ? 'text-[#001F3F]' : 'text-white'
                                 }`}
                         >
                             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -93,10 +99,10 @@ const Navbar = () => {
                         className="fixed inset-0 top-0 left-0 w-full h-screen bg-white z-40 md:hidden flex flex-col p-8"
                     >
                         <div className="flex justify-between items-center mb-16">
-                            <span className="text-2xl font-serif font-bold tracking-tighter text-secondary">
-                                ISLAY <span className="text-primary italic">FRIGATE</span>
+                            <span className="text-2xl font-serif font-bold tracking-tighter text-[#001F3F]">
+                                ISLAY <span className="text-[#C5A059] italic">FRIGATE</span>
                             </span>
-                            <button onClick={() => setIsOpen(false)} className="text-secondary p-2">
+                            <button onClick={() => setIsOpen(false)} className="text-[#001F3F] p-2">
                                 <X size={28} />
                             </button>
                         </div>
@@ -110,9 +116,9 @@ const Navbar = () => {
                                     transition={{ delay: i * 0.1 }}
                                 >
                                     <Link
-                                        to={link.path}
+                                        href={link.path}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-3xl font-serif text-secondary hover:text-primary transition-colors italic"
+                                        className="text-3xl font-serif text-[#001F3F] hover:text-[#C5A059] transition-colors italic"
                                     >
                                         {link.name}
                                     </Link>
@@ -124,9 +130,9 @@ const Navbar = () => {
                                 transition={{ delay: 0.4 }}
                             >
                                 <Link
-                                    to="/book"
+                                    href="/book"
                                     onClick={() => setIsOpen(false)}
-                                    className="bg-secondary text-white w-full py-5 rounded-sm text-[12px] font-bold uppercase tracking-[0.2em] inline-block text-center shadow-md"
+                                    className="bg-[#001F3F] text-white w-full py-5 rounded-sm text-[12px] font-bold uppercase tracking-[0.2em] inline-block text-center shadow-md"
                                 >
                                     Make a Reservation
                                 </Link>
@@ -147,7 +153,7 @@ const Navbar = () => {
                 )}
             </AnimatePresence>
         </nav>
-    );
-};
+    )
+}
 
-export default Navbar;
+export default Navbar

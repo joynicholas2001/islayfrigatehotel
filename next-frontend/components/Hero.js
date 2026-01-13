@@ -1,11 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+'use client'
+
+import React from 'react'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import Image from 'next/image'
+import { ChevronDown } from 'lucide-react'
 
 const Hero = () => {
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-secondary">
+        <section className="relative h-screen w-full overflow-hidden bg-[#001F3F]">
             {/* Background Parallax */}
             <motion.div
                 initial={{ scale: 1.15, opacity: 0 }}
@@ -13,13 +16,14 @@ const Hero = () => {
                 transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0 z-0"
             >
-                <img
+                <Image
                     src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
                     alt="Luxury Hotel"
-                    className="w-full h-full object-cover"
-                    loading="eager"
+                    fill
+                    priority
+                    className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-transparent to-secondary"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-[#001F3F]/80 via-transparent to-[#001F3F]"></div>
             </motion.div>
 
             {/* Content Layer */}
@@ -29,7 +33,7 @@ const Hero = () => {
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 1, delay: 0.8 }}
-                        className="text-primary uppercase tracking-[0.6em] font-bold text-[10px] mb-8 block"
+                        className="text-[#C5A059] uppercase tracking-[0.6em] font-bold text-[10px] mb-8 block"
                     >
                         Est. 1924 • Argyll & Bute
                     </motion.span>
@@ -40,10 +44,10 @@ const Hero = () => {
                         initial={{ y: 150 }}
                         animate={{ y: 0 }}
                         transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 1 }}
-                        className="text-white text-7xl md:text-9xl mb-12 leading-[0.85] font-serif italic"
+                        className="text-white text-5xl md:text-9xl mb-12 leading-[0.85] font-serif italic"
                     >
                         Coastal <br />
-                        <span className="text-primary italic">Heritage</span>
+                        <span className="text-[#C5A059] italic">Heritage</span>
                     </motion.h1>
                 </div>
 
@@ -53,27 +57,13 @@ const Hero = () => {
                     transition={{ duration: 1.2, delay: 2 }}
                     className="flex flex-col sm:flex-row gap-8 items-center"
                 >
-                    <Link to="/rooms" className="btn-luxury group">
+                    <Link href="/rooms" className="px-12 py-5 bg-[#C5A059] text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#AB8A4B] transition-all duration-500 shadow-xl">
                         Unveil the Suites
                     </Link>
-                    <Link to="/book" className="btn-outline group">
+                    <Link href="/book" className="px-12 py-5 border border-white/30 text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[#001F3F] transition-all duration-500">
                         Begin Journey
                     </Link>
                 </motion.div>
-
-                {/* Aesthetic Accents */}
-                <div className="absolute left-10 bottom-24 hidden lg:block overflow-hidden">
-                    <motion.div
-                        initial={{ y: 100 }}
-                        animate={{ y: 0 }}
-                        transition={{ duration: 1, delay: 2.5 }}
-                        className="flex flex-col space-y-4 text-[9px] uppercase tracking-[0.4em] text-gray-400 font-bold -rotate-90 origin-left"
-                    >
-                        <span>Excellence</span>
-                        <div className="h-px w-20 bg-primary/30"></div>
-                        <span>Authenticity</span>
-                    </motion.div>
-                </div>
 
                 {/* Scroll Indicator */}
                 <motion.div
@@ -87,7 +77,7 @@ const Hero = () => {
                         animate={{ y: [0, 10, 0] }}
                         transition={{ repeat: Infinity, duration: 2.5 }}
                     >
-                        <ChevronDown size={24} strokeWidth={1} className="text-primary" />
+                        <ChevronDown size={24} strokeWidth={1} className="text-[#C5A059]" />
                     </motion.div>
                 </motion.div>
             </div>

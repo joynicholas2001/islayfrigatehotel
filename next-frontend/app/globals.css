@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary: #C5A059;
+    --primary-hover: #AB8A4B;
+    --secondary: #001F3F;
+    --secondary-light: #003366;
+    --accent: #F9F7F2;
+    --background-light: #FFFFFF;
+    --text-dark: #1A1A1A;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+.transition-luxury {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.luxury-shadow {
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.15);
+}
+
+.reveal-text {
+    overflow: hidden;
+}
+
+@layer base {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-serif;
+    }
+}

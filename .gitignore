@@ -37,6 +37,12 @@ backend/.env
 backend/prisma/dev.db
 backend/prisma/dev.db-journal
 
+# Next.js specific
+next-frontend/node_modules/
+next-frontend/.next/
+next-frontend/out/
+next-frontend/.env*
+
 # Editor
 .vscode/
 .idea/

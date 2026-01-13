@@ -1,12 +1,15 @@
+'use client'
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const FAQItem = ({ question, answer, isOpen, toggle }) => (
     <div className="border-b border-black/5 last:border-none">
         <button
             onClick={toggle}
-            className="w-full py-10 flex justify-between items-center text-left focus:outline-none transition-smooth hover:text-primary group"
+            className="w-full py-10 flex justify-between items-center text-left focus:outline-none transition-all hover:text-primary group"
         >
             <span className="text-xl md:text-2xl font-serif text-secondary italic leading-tight group-hover:pl-4 transition-all duration-700">{question}</span>
             <div className={`p-2 transition-transform duration-700 ${isOpen ? 'rotate-180' : 'rotate-0'}`}>
@@ -31,8 +34,8 @@ const FAQItem = ({ question, answer, isOpen, toggle }) => (
     </div>
 );
 
-const FAQs = () => {
-    const [openIndex, setOpenIndex] = useState(0);
+const FAQsPage = () => {
+    const [openIndex, setOpenIndex] = useState('0-0');
 
     const faqData = [
         {
@@ -70,11 +73,12 @@ const FAQs = () => {
                     transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
                     className="absolute inset-0"
                 >
-                    <img
+                    <Image
                         src="https://images.unsplash.com/photo-1444201983204-c43cbd584d93?auto=format&fit=crop&q=80"
                         alt="Support Coastal"
-                        className="w-full h-full object-cover"
-                        loading="lazy"
+                        fill
+                        className="object-cover"
+                        priority
                     />
                 </motion.div>
                 <div className="relative z-10 text-center">
@@ -142,12 +146,12 @@ const FAQs = () => {
                         Our 24/7 concierge team is dedicated to curating your perfect stay. Reach out for any bespoke requests.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-8 justify-center items-center font-bold text-[10px] uppercase tracking-[0.4em]">
-                        <a href="tel:+441880820300" className="group flex items-center gap-4 text-secondary hover:text-primary transition-smooth">
-                            Call Concierge <ArrowRight size={14} className="group-hover:translate-x-2 transition-smooth" />
+                        <a href="tel:+441880820300" className="group flex items-center gap-4 text-secondary hover:text-primary transition-all">
+                            Call Concierge <ArrowRight size={14} className="group-hover:translate-x-2 transition-all" />
                         </a>
                         <div className="w-1 h-1 bg-gray-300 rounded-full hidden sm:block"></div>
-                        <a href="mailto:islayfrigatehotel@outlook.com" className="group flex items-center gap-4 text-secondary hover:text-primary transition-smooth">
-                            Send Inquiry <ArrowRight size={14} className="group-hover:translate-x-2 transition-smooth" />
+                        <a href="mailto:islayfrigatehotel@outlook.com" className="group flex items-center gap-4 text-secondary hover:text-primary transition-all">
+                            Send Inquiry <ArrowRight size={14} className="group-hover:translate-x-2 transition-all" />
                         </a>
                     </div>
                 </div>
@@ -156,4 +160,4 @@ const FAQs = () => {
     );
 };
 
-export default FAQs;
+export default FAQsPage;

@@ -1,27 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Hero from '../components/Hero';
+'use client'
+
+import React from 'react';
+import Hero from '@/components/Hero';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { fetchRooms } from '../api';
-import RoomCard from '../components/RoomCard';
-import ReviewCarousel from '../components/ReviewCarousel';
-import { Wifi, Wine, Utensils, Waves, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import RoomCard from '@/components/RoomCard';
+import ReviewCarousel from '@/components/ReviewCarousel';
+import { Wifi, Wine, Utensils, Waves } from 'lucide-react';
+import Image from 'next/image';
 
-const Home = () => {
-    const [featuredRooms, setFeaturedRooms] = useState([]);
-
-    useEffect(() => {
-        const getRooms = async () => {
-            try {
-                const response = await fetchRooms();
-                setFeaturedRooms(response.data.slice(0, 3));
-            } catch (err) {
-                console.error("Failed to fetch rooms for home page", err);
-            }
-        };
-        getRooms();
-    }, []);
-
+const HomeClient = ({ rooms }) => {
     return (
         <div className="overflow-x-hidden">
             <Hero />
@@ -49,7 +37,7 @@ const Home = () => {
                                 Situated in the heart of Tarbert’s vibrant fishing village, the Islay Frigate Hotel is a masterpiece of coastal hospitality.
                                 We offer an intimate retreat where heritage architecture harmonizes with contemporary luxury.
                             </p>
-                            <Link to="/about" className="group inline-flex items-center gap-4 text-xs font-bold uppercase tracking-[0.3em] overflow-hidden">
+                            <Link href="/about" className="group inline-flex items-center gap-4 text-xs font-bold uppercase tracking-[0.3em] overflow-hidden">
                                 <span className="relative z-10">Discover our Story</span>
                                 <div className="h-px w-12 bg-primary transition-all duration-700 group-hover:w-24"></div>
                             </Link>
@@ -62,20 +50,20 @@ const Home = () => {
                             viewport={{ once: true }}
                             className="relative"
                         >
-                            <div className="overflow-hidden luxury-shadow">
-                                <img
+                            <div className="overflow-hidden luxury-shadow relative h-[400px] md:h-[700px]">
+                                <Image
                                     src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
                                     alt="Hotel Exterior"
-                                    className="w-full h-[400px] md:h-[700px] object-cover hover:scale-105 transition-transform duration-2000"
-                                    loading="lazy"
+                                    fill
+                                    className="object-cover hover:scale-105 transition-transform duration-2000"
                                 />
                             </div>
                             <div className="absolute -bottom-16 -left-16 w-64 h-80 hidden xl:block overflow-hidden luxury-shadow">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1551882547-ff43c6166863?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
                                     alt="Detail"
-                                    className="w-full h-full object-cover"
-                                    loading="lazy"
+                                    fill
+                                    className="object-cover"
                                 />
                             </div>
                         </motion.div>
@@ -91,11 +79,11 @@ const Home = () => {
                             <span className="text-primary uppercase tracking-[0.5em] font-bold mb-6 block text-[10px]">Restful Sanctuaries</span>
                             <h2 className="text-5xl md:text-6xl font-serif text-secondary leading-tight italic">Refined Accommodations</h2>
                         </div>
-                        <Link to="/rooms" className="text-[10px] font-bold uppercase tracking-[0.4em] border-b border-primary/30 pb-2 hover:border-primary transition-all">View Curated Stays</Link>
+                        <Link href="/rooms" className="text-[10px] font-bold uppercase tracking-[0.4em] border-b border-primary/30 pb-2 hover:border-primary transition-all">View Curated Stays</Link>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                        {featuredRooms.map((room) => (
+                        {rooms.map((room) => (
                             <RoomCard key={room.id} room={room} />
                         ))}
                     </div>
@@ -242,8 +230,8 @@ const Home = () => {
                 <div className="max-w-4xl mx-auto px-4">
                     <h2 className="text-4xl md:text-6xl font-serif mb-12 leading-tight">Ready for a Coastal <br /><span className="text-primary italic">Adventure?</span></h2>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                        <Link to="/book" className="bg-primary hover:bg-primary-hover text-white px-12 py-5 rounded-sm text-sm font-bold uppercase tracking-[0.2em] transition-luxury">Book My Stay Now</Link>
-                        <Link to="/contact" className="bg-transparent border border-white/30 hover:border-white text-white px-12 py-5 rounded-sm text-sm font-bold uppercase tracking-[0.2em] transition-luxury">Contact Concierge</Link>
+                        <Link href="/book" className="bg-primary hover:bg-primary-hover text-white px-12 py-5 rounded-sm text-sm font-bold uppercase tracking-[0.2em] transition-luxury">Book My Stay Now</Link>
+                        <Link href="/contact" className="bg-transparent border border-white/30 hover:border-white text-white px-12 py-5 rounded-sm text-sm font-bold uppercase tracking-[0.2em] transition-luxury">Contact Concierge</Link>
                     </div>
                 </div>
             </section>
@@ -251,4 +239,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default HomeClient;

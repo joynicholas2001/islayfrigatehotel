@@ -1,9 +1,11 @@
+'use client'
+
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Download, Edit3, Trash2, Calendar, Mail, Hash, Users, ArrowRight, ArrowLeft } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Download, Trash2, ArrowRight, ArrowLeft } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-const ManageBooking = () => {
+const ManageBookingPage = () => {
     const [bookingId, setBookingId] = useState('');
     const [email, setEmail] = useState('');
     const [booking, setBooking] = useState(null);
@@ -57,7 +59,7 @@ const ManageBooking = () => {
                                             placeholder="IFH-XXXXXXX"
                                             value={bookingId}
                                             onChange={(e) => setBookingId(e.target.value.toUpperCase())}
-                                            className="w-full bg-transparent border-b border-black/10 py-6 focus:outline-none focus:border-primary transition-smooth text-lg"
+                                            className="w-full bg-transparent border-b border-black/10 py-6 focus:outline-none focus:border-primary transition-all text-lg"
                                         />
                                     </div>
                                 </div>
@@ -71,7 +73,7 @@ const ManageBooking = () => {
                                             placeholder="your@email.com"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="w-full bg-transparent border-b border-black/10 py-6 focus:outline-none focus:border-primary transition-smooth text-lg"
+                                            className="w-full bg-transparent border-b border-black/10 py-6 focus:outline-none focus:border-primary transition-all text-lg"
                                         />
                                     </div>
                                 </div>
@@ -79,10 +81,10 @@ const ManageBooking = () => {
                                 <button
                                     disabled={loading}
                                     type="submit"
-                                    className="btn-luxury w-full group flex items-center justify-center gap-4 mt-8"
+                                    className="bg-secondary text-white py-5 px-10 text-[10px] font-bold uppercase tracking-[0.3em] w-full hover:bg-primary transition-all flex items-center justify-center gap-4 mt-8 disabled:opacity-50"
                                 >
                                     <span>{loading ? "Locating Stay..." : "Retrieve Reservation"}</span>
-                                    <ArrowRight size={14} className="group-hover:translate-x-2 transition-smooth" />
+                                    <ArrowRight size={14} className="transition-all" />
                                 </button>
                             </form>
                         </div>
@@ -102,10 +104,10 @@ const ManageBooking = () => {
                                 <p className="text-gray-400 font-bold tracking-[0.2em] text-[10px] uppercase">IFH Identifier: {booking.id}</p>
                             </div>
                             <div className="flex gap-8">
-                                <button onClick={() => toast.success("Document Generation Initiated")} className="text-[10px] uppercase tracking-[0.4em] font-bold text-secondary flex items-center gap-3 hover:text-primary transition-smooth underline underline-offset-8">
+                                <button onClick={() => toast.success("Document Generation Initiated")} className="text-[10px] uppercase tracking-[0.4em] font-bold text-secondary flex items-center gap-3 hover:text-primary transition-all underline underline-offset-8">
                                     <Download size={14} /> Download Invitation
                                 </button>
-                                <button onClick={() => setBooking(null)} className="text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 flex items-center gap-3 hover:text-secondary transition-smooth">
+                                <button onClick={() => setBooking(null)} className="text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 flex items-center gap-3 hover:text-secondary transition-all">
                                     <ArrowLeft size={14} /> New Search
                                 </button>
                             </div>
@@ -143,7 +145,7 @@ const ManageBooking = () => {
                                     <h4 className="text-[10px] uppercase tracking-[0.5em] font-bold text-primary italic">Concierge Adjustments</h4>
                                     <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                                         <p className="text-gray-500 text-sm italic font-light max-w-md">Modifications to your stay are handled with personal care by our harbour frontage team.</p>
-                                        <button onClick={() => toast("Adjustment Request Sent", { icon: "🔔" })} className="btn-luxury px-12 whitespace-nowrap">
+                                        <button onClick={() => toast("Adjustment Request Sent", { icon: "🔔" })} className="bg-secondary text-white py-5 px-12 text-[10px] font-bold uppercase tracking-[0.3em] whitespace-nowrap hover:bg-primary transition-all">
                                             Request Amendment
                                         </button>
                                     </div>
@@ -167,10 +169,10 @@ const ManageBooking = () => {
                                     </div>
 
                                     <button onClick={() => toast.error("Cancellation requires direct concierge contact.")} className="w-full text-left group flex items-center justify-between pt-12 border-t border-black/5">
-                                        <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-gray-400 group-hover:text-red-500 transition-smooth flex items-center gap-3">
+                                        <span className="text-[9px] uppercase tracking-[0.4em] font-bold text-gray-400 group-hover:text-red-500 transition-all flex items-center gap-3">
                                             <Trash2 size={12} strokeWidth={1.5} /> Relinquish Reservation
                                         </span>
-                                        <ArrowRight size={12} className="text-gray-300 group-hover:text-red-500 transition-smooth" />
+                                        <ArrowRight size={12} className="text-gray-300 group-hover:text-red-500 transition-all" />
                                     </button>
                                 </div>
                             </div>
@@ -182,4 +184,4 @@ const ManageBooking = () => {
     );
 };
 
-export default ManageBooking;
+export default ManageBookingPage;
